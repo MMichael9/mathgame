@@ -60,7 +60,7 @@ session_start();
               </div>
             </div>
             <div>
-                <p><?php echo $invalid ?></p>
+                <p style="color:red;"><?php echo $invalid ?></p>
             </div>
         </form>
         </div>
