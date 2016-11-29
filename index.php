@@ -21,8 +21,6 @@ session_start();
         $password = $_POST["password"];
         $_SESSION["email"] = $email;
         $_SESSION["password"] = $password;
-        $_SESSION["score"] = $score;
-        $_SESSION["questions"] = $questions;
     
         if ($email == "a@a.a" && $password == "aaa"){
             header('Location: game.php'); die();

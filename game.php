@@ -23,19 +23,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $_SESSION['counter'] = 0;
     }
     if ($_SESSION['sign'] == "+") {
-        $answer = $_SESSION['first'] + $_SESSION['second'];
+        $answer = $_SESSION['numOne'] + $_SESSION['numTwo'];
     } else {
-        $answer = $_SESSION['first'] - $_SESSION['second'];
+        $answer = $_SESSION['numOne'] - $_SESSION['numTwo'];
     }
     if (!is_numeric($_POST['answer'])) {
         $incorrect = "You must enter a number";
     } else {
         if ($_POST['answer'] != $answer) {
-            $incorrect = "You are wrong";
+            $incorrect = "Sorry, you are incorrect";
             $valid = false;
         }
         if ($_POST['answer'] == $answer){
-            $incorrect = "You are correct";
+            $incorrect = "Good Job, You are correct";
             
             $score = $_SESSION['score'];
             $score++;
@@ -63,11 +63,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
         </form>
         <form class="form-horizontal" role="form" method="post" name="test" id="test" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
-            <div class="form-group" name="first">
+            <div class="form-group" name="numOne">
                 <div class="col-sm-3 col-sm-offset-2">
-                    <?php  $first = rand(0,20);
-                        $_SESSION['first'] = $first;
-                        echo($first); ?>
+                    <?php  $numOne = rand(0,20);
+                        $_SESSION['numOne'] = $numOne;
+                        echo($numOne); ?>
                 </div>
                 <div class="col-sm-3">
                     <?php $int = rand(0,1);
@@ -76,10 +76,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                         $_SESSION['sign'] = $rand_sign;
                         echo $rand_sign; ?>
                 </div>
-                <div class="col-sm-3" name="second">
-                    <?php $second = rand(0,20);
-                        $_SESSION['second'] = $second;
-                        echo($second); ?>
+                <div class="col-sm-3" name="numTwo">
+                    <?php $numTwo = rand(0,20);
+                        $_SESSION['numTwo'] = $numTwo;
+                        echo($numTwo); ?>
                 </div>
             </div>
             <div class="form-group">
