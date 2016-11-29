@@ -11,7 +11,7 @@
 session_start(); 
 $incorrect = "";
 $answer = 0;
-$counter = 0;
+$question = 0;
 $score = 0;
     
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -19,8 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     if (!isset($_SESSION['score'])){
         $_SESSION['score'] = 0;
     }
-    if (!isset($_SESSION['counter'])){
-        $_SESSION['counter'] = 0;
+    if (!isset($_SESSION['question'])){
+        $_SESSION['question'] = 0;
     }
     if ($_SESSION['sign'] == "+") {
         $answer = $_SESSION['numOne'] + $_SESSION['numTwo'];
@@ -42,9 +42,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             $_SESSION['score'] = $score;
         }
     
-        $counter = $_SESSION['counter'];
-        $counter++;
-        $_SESSION['counter'] = $counter;
+        $question = $_SESSION['question'];
+        $question++;
+        $_SESSION['question'] = $question;
     }
 }
     ?>
@@ -65,21 +65,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         <form class="form-horizontal" role="form" method="post" name="test" id="test" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
             <div class="form-group" name="numOne">
                 <div class="col-sm-3 col-sm-offset-2">
-                    <?php  $numOne = rand(0,20);
+                    <?php  
+                        $numOne = rand(0,20);
                         $_SESSION['numOne'] = $numOne;
-                        echo($numOne); ?>
+                        echo($numOne); 
+                    ?>
                 </div>
                 <div class="col-sm-3">
-                    <?php $int = rand(0,1);
+                    <?php 
+                        $int = rand(0,1);
                         $sign = "+-";
                         $rand_sign = $sign[$int];
                         $_SESSION['sign'] = $rand_sign;
-                        echo $rand_sign; ?>
+                        echo $rand_sign; 
+                    ?>
                 </div>
                 <div class="col-sm-3" name="numTwo">
-                    <?php $numTwo = rand(0,20);
+                    <?php 
+                        $numTwo = rand(0,20);
                         $_SESSION['numTwo'] = $numTwo;
-                        echo($numTwo); ?>
+                        echo($numTwo); 
+                    ?>
                 </div>
             </div>
             <div class="form-group">
@@ -97,18 +103,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             <hr />
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-6 ">
-                    <p>Score <?php if (isset($_SESSION['score'])) { 
+                    <p>Score <?php 
+                                    if (isset($_SESSION['score'])) { 
                                         echo $_SESSION['score']; 
                                     } else { 
                                         echo 0; 
                                     } ?> 
                                     / 
-                                <?php if (isset($_SESSION['counter'])) { 
-                                        echo $_SESSION['counter']; 
+                                <?php if (isset($_SESSION['question'])) { 
+                                        echo $_SESSION['question']; 
                                     } else { 
                                         echo 0;
                                     } 
-                        ?> </p>
+                                ?> 
+                    </p>
                 </div>
             </div>
         </form>
